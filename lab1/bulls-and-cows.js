@@ -73,7 +73,13 @@ function game(word) {
 }
 
 function terminalPassword() {
-    const arr = ['RACES', 'SMELL', 'PITYS', 'ENACT', 'SWORE', 'CARTS', 'SMART'];
+    const list = ['askos', 'audit', 'books', 'carts', 'clans', 'daddy', 'depth', 'doors', 'earls', 'email', 'fetch', 'firms', 'foggy', 'gappy', 'grant', 'guest', 'hairs', 'harry', 'holly', 'ideal', 'ideas', 'irony', 'japan', 'joker', 'jolly', 'krona', 'kings', 'kelpy', 'largo', 'leave', 'light', 'maker', 'money', 'mured', 'needs', 'nodes', 'nukes', 'offed', 'oxter', 'orbit', 'pedro', 'penny', 'phone', 'quire', 'quote', 'qanat', 'rains', 'ready', 'repot', 'salad', 'scene', 'skull', 'taxes', 'tools', 'types', 'users', 'unzip', 'umbra', 'vocal', 'vodka', 'venus', 'watch', 'wreak', 'works', 'yourn', 'yearn', 'yourn', 'zayin', 'zoris', 'zymes']
+    let arr = [];
+    let variablesSize = 7;
+    for (let i = 0; i < variablesSize; i++) {
+        arr.push(list[randomInteger(0, list.length)])
+    }
+    arr = arr.map(function (value) { return value.toUpperCase() })
     const text = `0x01 !]:#&{})|!*^)[ | 0x0D *>:+&=+)${arr[0]}/\n0x02 [</${arr[1]}[]@>|! | 0x0E $"}/:_|]>+?&#:|\n0x03 *;___|=)(/!}#? | 0x0F \(:;<\\)]!+%<\)\n0x04 [&?<)[:*)]{|#% | 0x10 _|_?|${arr[2]}??=#_\n0x05 =+*${arr[3]}+[*^>* | 0x11 ]&/*|^>%&)/^;<\n0x06 $("[?+#|\=$=+$_ | 0x12 \}=^>=$}}=|__&[\n0x07 {%<?%;{;>^:/>% | 0x13 :@+$&\%^%${arr[4]}\n0x08 >+;@>>*(/}\_&=+ | 0x14 (%#;(}{;|<:;\n0x09 ${arr[5]}!])/{=)/@ | 0x15 ]]($??;%%\]=#/#\n0x0A @*@$_/>\)@{#|{) | 0x16 &}\_]/^$@]${arr[6]}\n0x0B |[(([&}{*%%}=| | 0x17 >{/>!@*>#$<=?{|\n0x0C &[\/[+^\^##&=]\:; | 0x18 /^\"(=;}|[*>*!\\n`;
     console.log(text)
     return arr[randomInteger(0, 7)]
@@ -93,6 +99,7 @@ function fallout() {
             if (attempt === 0) {
                 console.log('TERMINAL LOCKED');
                 console.log('PLEASE CONTACT AN ADMINISTRATOR');
+                console.log(`PASSWORD: ${password}`)
                 return 0;
             }
 
