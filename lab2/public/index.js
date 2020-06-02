@@ -1,45 +1,40 @@
 const API_KEY = '6448d29fd763a3d0e266d0100b828aa4';
 
 const mapConfig = {
-	center: { lat: 48, lng: 31 },
+	center: {
+		lat: 50,
+		lng: 30
+	},
 	zoom: 6
 };
 
-const Locations = [
-	{
-		lat: 49.233083,
-		lng: 28.4682169
-	},
-	// {
-	// 	lat: 50.4501,
-	// 	lng: 30.5234
-	// },
-	// {
-	// 	lat: 49.58826699999999,
-	// 	lng: 34.5514169
-	// },
-	// {
-	// 	lat: 49.839683,
-	// 	lng: 24.029717
-	// },
-	// {
-	// 	lat: 46.482526,
-	// 	lng: 30.7233095
-	// },
-	// {
-	// 	lat: 44.61665,
-	// 	lng: 33.5253671
-	// },
-	// {
-	// 	lat: 48.015883,
-	// 	lng: 37.80285
-	// }
-];
-const citys = ['Vinnytsia', 'Kyiv', 'Poltava',]
+const citys = [
+	'Vinnytsia',
+	'Kyiv',
+	'Poltava',
+	'Ivano-Frankivsk',
+	'Cherkasy',
+	'Chernihiv',
+	'Chernivtsi',
+	'Dnipropetrovsk',
+	'Donetsk',
+	'Kharkiv',
+	'Kherson',
+	'Luhansk',
+	'Lviv',
+	'Mykolaiv',
+	'Odessa'
+]
 const convertPositionFormat = (position) => {
-	const { lon, lat } = position;
+	const {
+		lon,
+		lat
+	} = position;
 	const lng = lon
-	return { lat, lng }
+	return {
+		lat,
+		lng
+	}
 }
 
 class ApiService {
@@ -56,7 +51,10 @@ class ApiService {
 
 
 	async getWeaterByPosition(position) {
-		const { lat, lng } = position;
+		const {
+			lat,
+			lng
+		} = position;
 		const response = await fetch(
 			`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${this.apiKey}`
 		);
@@ -88,9 +86,7 @@ const main = async () => {
 
 	const apiService = new ApiService(API_KEY);
 	const mapService = new MapService(map);
-	// console.log(await apiService.getWeaterByCityName("Vinnytsia"))
 	for (const city of citys) {
-		// const data = await apiService.getWeaterByPosition(position);
 		const data = await apiService.getWeaterByCityName(city);
 		const weather = data.weather[0];
 		const coord = convertPositionFormat(data.coord);
@@ -98,11 +94,13 @@ const main = async () => {
 		const infowindow = new google.maps.InfoWindow({
 			content: weather.description
 		});
-		console.log(weather.icon)
 
 		const icon = apiService.getWeatherIconLink(weather.icon);
 
-		const options = { icon, title: weather.main };
+		const options = {
+			icon,
+			title: weather.main
+		};
 
 		const marker = mapService.addMarker(coord, options);
 
